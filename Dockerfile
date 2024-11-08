@@ -12,9 +12,6 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ros_install_noetic.sh /ros_install_noetic.sh
-COPY dueling_dqn_gazebo /dueling_dqn_gazebo
-COPY mapRL /workspace
-COPY models /models
 
 RUN chmod +x /ros_install_noetic.sh && \
     sed -i 's/read -p.*$/REPLY=1/' /ros_install_noetic.sh && \
@@ -28,7 +25,7 @@ RUN echo "source /opt/ros/noetic/setup.bash" >> /home/kasm-user/.bashrc && \
 WORKDIR /workspace
 RUN catkin_make
 
-RUN chown -R kasm-user:kasm-user /home/kasm-user/.ros /workspace
+RUN chown -R kasm-user:kasm-user /home/kasm-user/.ros 
 
 
 ENTRYPOINT ["/dockerstartup/kasm_default_profile.sh", "/dockerstartup/vnc_startup.sh", "/dockerstartup/kasm_startup.sh"]
