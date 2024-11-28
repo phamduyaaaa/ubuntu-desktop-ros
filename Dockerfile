@@ -12,6 +12,9 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ros_install_noetic.sh /ros_install_noetic.sh
+COPY dueling_dqn_gazebo /home/kasm-user/dueling_dqn_gazebo
+COPY mapRL /home/kasm-user/mapRL
+COPY models /home/kasm-user/models
 
 RUN chmod +x /ros_install_noetic.sh && \
     sed -i 's/read -p.*$/REPLY=1/' /ros_install_noetic.sh && \
