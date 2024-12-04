@@ -23,10 +23,10 @@ RUN chmod +x /ros_install_noetic.sh && \
 RUN /ros_install_noetic.sh
 
 RUN echo "source /opt/ros/noetic/setup.bash" >> /home/kasm-user/.bashrc && \
-    echo "source /workspace/devel/setup.bash" >> /home/kasm-user/.bashrc
+    echo "source /mapRL/devel/setup.bash" >> /home/kasm-user/.bashrc
 
-WORKDIR /workspace
-RUN catkin_make
+WORKDIR /home/kasm-user/mapRL
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin_make"
 
 RUN chown -R kasm-user:kasm-user /home/kasm-user/.ros 
 
